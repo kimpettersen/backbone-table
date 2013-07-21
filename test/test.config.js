@@ -6,10 +6,13 @@
 
 require.config({
     paths: {
-        jquery: 'lib/jquery',
-        underscore: 'lib/underscore',
-        backbone: 'lib/backbone'
+        jquery: '../js/lib/jquery',
+        underscore: '../js/lib/underscore',
+        backbone: '../js/lib/backbone',
+        chai: 'lib/chai',
+        mocha: 'lib/mocha',
     },
+    urlArgs: "t="+(new Date()).getTime(),
     shim: {
         backbone: {
             deps: ['underscore', 'jquery'],
@@ -18,17 +21,23 @@ require.config({
         underscore: {
             exports: '_'
         },
-    },
-    urlArgs: 't=' + (new Date()).getTime()
-
+        mocha: {
+            exports: 'mocha'
+        }
+    }
 });
 
 require(['jquery',
           'underscore',
           'backbone',
-          'view'
+          'chai',
+          'mocha'
           ],
-  function($, _, Backbone, Table) {
+  function($, _, Backbone, chai, mocha) {
 
-    new Table();
+    mocha.setup('tdd');
+    require(['tableTest'],
+        function(tableTest) {
+            mocha.run();
+        });
 });

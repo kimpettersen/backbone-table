@@ -1,6 +1,6 @@
 'use strict';
 
-define(['backbone', 'model'], function(Backbone, Row) {
+define(['model'], function(Row) {
 
     var Table = Backbone.Collection.extend({
         model: Row,

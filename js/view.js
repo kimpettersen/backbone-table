@@ -1,6 +1,6 @@
 'use strict';
 
-define(['underscore','jquery','backbone', 'collection', 'model'], function(_, $, Backbone, RowCollection, Row) {
+define(['collection', 'model'], function(RowCollection, Row) {
     // var loadedData;
     // $.ajax({
     //     url: '/data/data.json',
