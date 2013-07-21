@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <link href="css/bootstrap.css" rel="stylesheet">
+
+
+    <script src="js/lib/jquery.js"></script>
+    <script src="js/lib/underscore.js"></script>
+    <script src="js/lib/backbone.js"></script>
+
+<!-- Yes, inline template -->
+<script type="text/template" id="table-template">
+    <button id="addRandomRow" class="btn">Add random row</button>
+    <button id="removeAll" class="btn">Remove all rows</button>
+    <button id="reInit" class="btn">Reset everything</button>
+    <br><br>
+  <table class="table striped">
+    <thead>
+      <tr>
+          <% _.each(attrs, function(attr) {%>
+
+            <th>
+            <span><%= attr %></span><br>
+              <input type="submit" data-key="<%= attr %>" class="btn btn-small sort" value="Toggle Sort"><br>
+              <input type="submit" data-key="<%= attr %>" class="btn btn-small rangeFilter" value="Range filter"><br>
+              <input type="number" class="rangeFrom rangeItem">
+              <input type="number" class="rangeTo rangeItem">
+            </th>
+          <%});%>
+      </tr>
+    </thead>
+    <tbody>
+      <% _.each(rows, function(row){ %>
+        <tr>
+          <% _.each(attrs, function(attr) { %>
+            <td class="tableCell">
+              <span class="cellValue"><%= row.get(attr) %></span>
+              <span class="editValue hidden">
+                <input data-key="<%= attr %>" data-cid="<%=row.cid%>" value="<%= row.get(attr) %>">
+                <button class="btn btn-small saveButton">save</button>
+              </span>
+            </td>
+          <%});%>
+            <td><button id="<%= row.cid %>" class="btn delete">Delete row</button></td>
+        </tr>
+      <%}); %>
+      <tr>
+        <form id="addRow">
+          <% _.each(attrs, function(attr) {%>
+
+            <td>
+              <input type="text" name="<%= attr %>">
+            </td>
+            <%});%>
+          <td>
+            <input type="submit" class="btn" value="Add new row">
+          </td>
+        </form>
+      </tr>
+
+    </tbody>
+  </table>
+</script>
+
+  </head>
+  <body>
+<style>
+  input {
+    width: 50px;
+  }
+  .hidden {
+    display: none;
+  }
+  .rangeItem {
+    width:40px;
+  }
+</style>
+
+    <div class="container">
+      <h1>The table:</h1>
+      <div class="tableContainer">
+
+      </div>
+    </div>
+
+  </body>
+    <script src="js/main.js"></script>
+</html>
