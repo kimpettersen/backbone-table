@@ -23,12 +23,6 @@ require.config({
 
 });
 
-require(['jquery',
-          'underscore',
-          'backbone',
-          'view'
-          ],
-  function($, _, Backbone, Table) {
-
+require(['view'], function(Table) {
     new Table();
 });
