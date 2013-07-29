@@ -1,0 +1,38 @@
+- The code is well structured
+- He read the Backbone documentation
+- He has stored the data in the view, it should be in the model. For example (this.allAttrs = ['a', 'b', 'c', 'd', 'e', 'f'];
+)
+'''
+Discovered static values for a backbone model, put allAttrs and the ajax data as static methods in the model.
+A bit confused about the temporary storage of the values in range filter. Stored it in the collection instead of the view.
+Something about this doesn't feel right.
+That being said, I understand that non of this should be in the view to make sure the models are reusable.
+'''
+
+- Some things were a bit complex when they didn't need to be. For example, using a prototype function to get the data (line 18 view.js) and collection.js line 43 - 76
+'''
+Using the serializer was just me being lazy. Changed.
+'''
+
+
+- He is triggering an event when something happens. Backbone handles changes in the model. If we add a model, backbone triggers an 'add' event. If we change model attributes it triggers a 'change' event.
+'''
+Didn't think about this. Changed to take advantage of this.
+There's still a couple of things that are a bit confusing. When a custom event isn't enough, should I trigger an event in the view or the collection? It seems wrong to trigger an event on a collection from a view.
+See My questions #1
+'''
+
+- He is removing elements from the DOM when he could remove from the model. Use model.destroy for this.
+'''
+Do you mean collection.remove instead of model.destroy?
+'''
+- The collation.comparator is great
+############################################################################################################################
+
+My questions:
+
+1. rangeFilter in view.js:
+The range filter, what is the best way to do this without loosing the state(listeners). This seems wrong
+
+2. enableEdit in view.js
+I don't like this, is there a better way?
