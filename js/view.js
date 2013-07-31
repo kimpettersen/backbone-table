@@ -24,7 +24,7 @@ define(['collection', 'model'], function(RowCollection, Row) {
                 that.render();
             });
             this.listenTo(this.rows, 'add remove reset sort change', this.render);
-            this.listenTo(this, 'table:render', this.render);
+            this.listenTo(this, 'table:filter', this.render);
         },
 
         render: function() {
@@ -134,7 +134,7 @@ define(['collection', 'model'], function(RowCollection, Row) {
 
             this.rows.allRows = this.rows;
             this.rows = filteredRows;
-            this.trigger('table:render');
+            this.trigger('table:filter');
         },
     });
 

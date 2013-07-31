@@ -17,9 +17,11 @@ Using the serializer was just me being lazy. Changed.
 
 - He is triggering an event when something happens. Backbone handles changes in the model. If we add a model, backbone triggers an 'add' event. If we change model attributes it triggers a 'change' event.
 '''
-Didn't think about this. Changed to take advantage of this.
-There's still a couple of things that are a bit confusing. When a custom event isn't enough, should I trigger an event in the view or the collection? It seems wrong to trigger an event on a collection from a view.
-See My questions #1
+Didn't think about this. Changed to take advantage of it.
+There's still a couple of things that are a bit confusing. When a custom event isn't enough. When you perform an UI event(range filter) I trigger a custom event on the view. Should I trigger an event on the collection instead?
+
+It is technically a change in the collection(at least the way I did it). And all other events are on the collection. There might be cases where other components need to know about such an update.
+It seems to only work when I trigger it in the view though.
 '''
 
 - He is removing elements from the DOM when he could remove from the model. Use model.destroy for this.
@@ -27,6 +29,7 @@ See My questions #1
 Do you mean collection.remove instead of model.destroy?
 '''
 - The collation.comparator is great
+
 ############################################################################################################################
 
 My questions:
@@ -36,3 +39,20 @@ The range filter, what is the best way to do this without loosing the state(list
 
 2. enableEdit in view.js
 I don't like this, is there a better way?
+
+3. How will collections and models work together in a larger application? Could a collection have several models? Different models?
+
+3. What about inheritance/polymorphism, is that a common thing to use in a system like this.
+
+4. Unit-testing backbone. Seems pretty easy with backbone
+
+
+
+
+
+
+
+
+
+
+
